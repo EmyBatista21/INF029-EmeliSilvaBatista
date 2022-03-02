@@ -39,7 +39,8 @@ int main(){
           pessoa[i].cpf[lp] = '\0';
         } */
     }
-    printf("\n");
+    system("clear");
+    iniciotela(); 
     for(i = 0; i < tam; i++){
         printf("==== Dados da %d° pessoa ====\n", i + 1);
         printf("Nome: %s", pessoa[i].nome);
