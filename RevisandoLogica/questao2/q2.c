@@ -4,7 +4,7 @@
 
 /*Faça um programa que leia a idade de duas pessoas e imprima a soma das idades*/
 
-int main(void){
+void main(){
     int pessoa1, pessoa2, soma;
     setlocale(LC_ALL,"Portuguese"); 
     printf("Idade da 1° pessoa: ");
