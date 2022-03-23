@@ -26,7 +26,7 @@ numero ler4Numeros(){
 }
 int main(void){
   numero meusnumeros;
-  meusnumeros= ler4Numeros();
+  meusnumeros = ler4Numeros();
   imprime(meusnumeros);   
 }
 
