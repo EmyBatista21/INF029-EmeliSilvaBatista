@@ -1,10 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #include "EmeliBatista20212160052.h" // Substitua pelo seu arquivo de header renomeado
+#define TAM 250
 
-//gcc corretor.c EmeliBatista20212160052.c -o T1
+//gcc corretor.c EmeliBatista20212160052.c -o T1 -lm
+
 DataQuebrada quebraData(char data[]);
 int q1(char data[]); 
+int q5(int numero); 
 DataQuebrada quebraData(char data[]){
   DataQuebrada dq;
   char sDia[3];
@@ -60,26 +64,40 @@ int q1(char data[]){
     return 0; 
 }
 
+int q5(int numero){
+  int i, j; 
+  int n2 = numero;
+  int resto, divisor, invertido; 
+  invertido = 0; 
+ for(i = 0, j = 10; n2 >= j; i++){
+    n2 = n2 / j;  
+  }
+  for(; i >= 0 ; i--){
+    if(numero >= 10){
+      divisor = pow(j, i);
+      resto = numero % j;
+      numero = numero / j; 
+      invertido = invertido + (resto * divisor);      
+    }else{
+      invertido = invertido + numero;   
+    }
+  }
+  //printf("%d", invertido);
+  return invertido; 
+}    
 
 
 
 
 
 
-
-
-/*void testQ2(){
-  char text[TAM], letra;
+/*void testQ3(){
+  char text[TAM] = {"É preciso amar, as pessoas como se não houvesse amanha"}; 
+  char letra = 'e';
   int i, cont; 
-  printf("Insira um texto com até 250 caracteres: ");
-  fgets(text, TAM, stdin);
-  printf("Agora insira uma letra: ");
-  scanf("%c", &letra);
-  getchar(); 
   
-
   for(i = 0, cont = 0; i < TAM; i++){
-    if(text[i] == letra){
+    if(text[i] == letra || text[i] == letra - ascii32){
       cont++;
     }
   }
