@@ -5,20 +5,21 @@
 
 //int pow(int i, int k); 
 int main(){
-  int i, k;
-  int numero = 3456; 
-  int n2 = numero;
-  int resto, divisor, invertido; 
-  invertido = 0;
-  k = 10;
-  for(i = 0; n2 > k; i++){
-    n2 = n2 / k;  
+  int numero = 202222; 
+  int numbusca = 22; 
+  int numCont = numero; 
+  int resto1, resto2;
+  int i, j, k;
+  j = 10; 
+  for(i = 0; numCont >= 10; i++){
+    numCont = numCont / 10; 
   }
-  for(; i >= 0 ; i--){
-    divisor = pow(k, i);
-    resto = numero % k;
-    numero = numero / k; 
-    invertido = invertido + (resto * divisor); 
+  for(k = 0; k <= i; k++){
+    resto1 = numero % 10;
+    numero = numero / 10;
+    resto2 = numero % 10;
+    if()
   }
-  printf("%d", invertido);
-}    
+  printf("%d\n", i); 
+  return i;  
+}

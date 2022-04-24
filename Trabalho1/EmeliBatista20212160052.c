@@ -1,14 +1,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <string.h>
+#include <ctype.h>
 #include "EmeliBatista20212160052.h" // Substitua pelo seu arquivo de header renomeado
-#define TAM 250
+#define tam 250
 
-//gcc corretor.c EmeliBatista20212160052.c -o T1 -lm
+//gcc corretor.c EmeliBatista20212160052.c -o t1 -lm
 
 DataQuebrada quebraData(char data[]);
-int q1(char data[]); 
+int q1(char data[]);
+int q3(char str[tam], char letraBuscada, int isCaseSensitive);
 int q5(int numero); 
+int q6(int numero, int numBusca); 
+
 DataQuebrada quebraData(char data[]){
   DataQuebrada dq;
   char sDia[3];
@@ -64,42 +69,80 @@ int q1(char data[]){
     return 0; 
 }
 
+int q3(char str[], char letraBuscada, int isCaseSensitive){
+  int iCont, jCont, qtdOcorrencias;
+  for(jCont = 0; str[jCont] != '\0'; jCont++);
+  if(isCaseSensitive == 0){
+    for(iCont = 0; iCont < jCont; iCont++){
+      str[iCont] = toupper(str[iCont]);
+    }
+    letraBuscada = toupper(letraBuscada);  
+  }
+  for(iCont = 0; iCont < jCont; iCont++){
+    if(str[iCont] == letraBuscada){
+      qtdOcorrencias++;
+    }
+  }
+  
+  return qtdOcorrencias ;
+}
+
 int q5(int numero){
   int i, j; 
-  int n2 = numero;
+  int numCont = numero;
   int resto, divisor, invertido; 
   invertido = 0; 
- for(i = 0, j = 10; n2 >= j; i++){
-    n2 = n2 / j;  
+ for(i = 0, j = 10; numCont >= j; i++){
+    numCont = numCont / j;  
   }
   for(; i >= 0 ; i--){
-    if(numero >= 10){
+    if(numero >= 0){
       divisor = pow(j, i);
       resto = numero % j;
       numero = numero / j; 
       invertido = invertido + (resto * divisor);      
-    }else{
-      invertido = invertido + numero;   
     }
   }
-  //printf("%d", invertido);
   return invertido; 
 }    
 
-
-
-
-
-
-/*void testQ3(){
-  char text[TAM] = {"É preciso amar, as pessoas como se não houvesse amanha"}; 
-  char letra = 'e';
-  int i, cont; 
+int q6(int numero, int numBusca){
+  int qtdOcorrencias = 0; 
+  int restoNum, restoNumBusca;
+  int iCont;
+  int numBuscaCop = numBusca;
   
-  for(i = 0, cont = 0; i < TAM; i++){
-    if(text[i] == letra || text[i] == letra - ascii32){
-      cont++;
+  if(numero == 0 && numBusca == 0){
+    qtdOcorrencias++; 
+  }
+  
+  while(numero > 0){
+    restoNum = numero % 10;
+    restoNumBusca = numBusca % 10;
+
+    if(restoNum == restoNumBusca){
+      iCont = 1;
+      while(restoNum == restoNumBusca && numero > 0 && iCont > 0){
+        numero = numero /10;
+        numBusca = numBusca / 10;
+        restoNum = numero % 10;
+        restoNumBusca = numBusca % 10;
+  
+        if(numBusca < 10 && numBusca == restoNum){
+          restoNum = numero;
+          iCont = -1;
+        }
+        if(iCont < 0){
+          qtdOcorrencias++;
+          numero = numero /10;
+          numBusca = numBuscaCop;
+        }
+      }
+    }else{
+      numero = numero / 10;
+      numBusca = numBuscaCop;
     }
   }
-  printf("A letra %c aparece %d vezes no texto", letra, cont); 
-}*/
+  printf("QTD OCORRENCIAS %d\n", qtdOcorrencias); 
+  return qtdOcorrencias; 
+}
