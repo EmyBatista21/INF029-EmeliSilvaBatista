@@ -115,34 +115,48 @@ int q6(int numero, int numBusca){
   if(numero == 0 && numBusca == 0){
     qtdOcorrencias++; 
   }
+  if (numBusca>10){
+    while(numero > 0){
+      restoNum = numero % 10;
+      restoNumBusca = numBusca % 10;
   
-  while(numero > 0){
-    restoNum = numero % 10;
-    restoNumBusca = numBusca % 10;
-
-    if(restoNum == restoNumBusca){
-      iCont = 1;
-      while(restoNum == restoNumBusca && numero > 0 && iCont > 0){
-        numero = numero /10;
-        numBusca = numBusca / 10;
-        restoNum = numero % 10;
-        restoNumBusca = numBusca % 10;
-  
-        if(numBusca < 10 && numBusca == restoNum){
-          restoNum = numero;
-          iCont = -1;
-        }
-        if(iCont < 0){
-          qtdOcorrencias++;
+      if(restoNum == restoNumBusca){
+        iCont = 1;
+        while(restoNum == restoNumBusca && numero > 0 && iCont > 0){
           numero = numero /10;
-          numBusca = numBuscaCop;
+          numBusca = numBusca / 10;
+          restoNum = numero % 10;
+          restoNumBusca = numBusca % 10;
+    
+          if(numBusca < 10 && numBusca == restoNum){
+            restoNum = numero;
+            iCont = -1;
+          }
+          if(iCont < 0){
+            qtdOcorrencias++;
+            numero = numero /10;
+            numBusca = numBuscaCop;
+          }
         }
+      }else{
+        numero = numero / 10;
+        numBusca = numBuscaCop;
       }
-    }else{
-      numero = numero / 10;
-      numBusca = numBuscaCop;
     }
   }
-  printf("QTD OCORRENCIAS %d\n", qtdOcorrencias); 
+
+  else{
+   for (  ; numero > 0; ){
+        
+        restoNum = numero % 10;
+        if (restoNum == numBusca) 
+        {
+          qtdOcorrencias ++;
+        }
+
+        numero = numero / 10;
+    }
+    
+  } 
   return qtdOcorrencias; 
 }

@@ -14,8 +14,8 @@ void testQ6();
 
 int main(){
   //testQ1();
-  testQ3();
-  //testQ5(); 
+  //testQ3();
+  testQ5(); 
   //testQ6(); 
 }
 void testQ1()
@@ -44,7 +44,7 @@ void testQ3()
     strcpy(str, "Renato Lima Novais");
     printf("%d\n", q3(str, 'a', 0) == 3);
     printf("%d\n", q3(str, 'b', 0) == 0);
-    printf("%d\n", q3(str, 'l', 1) == 0);
+    printf("%d\n", q3(str, 'l', 1) == 1);
     printf("%d\n", q3(str, 'l', 0) == 1);
     printf("%d\n", q3(str, 'L', 0) == 1);
 }
@@ -64,8 +64,10 @@ void testQ5(){
 }
 
 void testQ6(){
-  printf("%d\n", q6(324, 3) == 2);
-  printf("%d\n", q6(34567368, 4576) == 0);
-  printf("%d\n", q6(3539343, 3) == 1);
-  printf("%d\n", q6(3539343, 39) == 1);
+  printf("%d\n", q6(34567368, 3) == 2); //1
+  printf("%d\n", q6(34567368, 4576) == 0); // 1
+  printf("%d\n", q6(3539343, 3) == 4); // 1
+  printf("%d\n", q6(3539343, 39) == 1); // 1
+  printf("%d\n", q6(44, 44) == 1); //1
+  printf("%d\n", q6(44, 4) == 2); // 1
 }
