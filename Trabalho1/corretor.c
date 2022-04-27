@@ -60,7 +60,7 @@ void testQ5(){
   printf("%d\n", q5(1030) == 301);
   printf("%d\n", q5(123456789) == 987654321);
   printf("%d\n", q5(0) == 0000000);
-  printf("%d\n", q5(030) == 3);
+  printf("%d\n", q5(0300) == 3);
 }
 
 void testQ6(){
