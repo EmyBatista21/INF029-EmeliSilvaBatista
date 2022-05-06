@@ -13,9 +13,8 @@ void testQ5();
 void testQ6();
 
 int main(){
-  //testQ1();
-  //testQ3();
-  testQ5(); 
+  testQ3();
+  //testQ5(); 
   //testQ6(); 
 }
 void testQ1()
@@ -55,12 +54,12 @@ void testQ4(){
 
 void testQ5(){
   int numero;
-  printf("%d\n", q5(3456) == 6543);
-  printf("%d\n", q5(1000) == 1);
-  printf("%d\n", q5(1030) == 301);
-  printf("%d\n", q5(123456789) == 987654321);
-  printf("%d\n", q5(0) == 0000000);
-  printf("%d\n", q5(0300) == 3);
+  printf("%d\n", q5(3456) == 6543); //1
+  printf("%d\n", q5(1000) == 1); //1
+  printf("%d\n", q5(1030) == 301); //1
+  printf("%d\n", q5(123456789) == 987654321); //1
+  printf("%d\n", q5(0) == 0000000); //1
+  printf("%d\n", q5(0300) == 3); //1
 }
 
 void testQ6(){

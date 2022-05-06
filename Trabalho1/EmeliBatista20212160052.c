@@ -87,6 +87,10 @@ int q3(char str[], char letraBuscada, int isCaseSensitive){
   return qtdOcorrencias ;
 }
 
+/*int q4(*strTexto, char *strBusca){
+  
+}*/
+
 int q5(int numero){
   int i, j; 
   int numCont = numero;
