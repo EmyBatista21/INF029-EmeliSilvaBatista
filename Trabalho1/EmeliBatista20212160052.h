@@ -11,6 +11,7 @@ typedef struct{
 //gcc EmeliBatista20212160052.c -o T1
 int q1(char data[]);
 int q3(char str[], char letraBuscada, int isCaseSensitive);
+int q4(int *strTexto, char *strBusca);
 int q5(int numero);
 int q6(int numero, int numBusca);
 

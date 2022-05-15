@@ -11,6 +11,7 @@
 DataQuebrada quebraData(char data[]);
 int q1(char data[]);
 int q3(char str[tam], char letraBuscada, int isCaseSensitive);
+int q4(int *strTexto, char *strBusca); 
 int q5(int numero); 
 int q6(int numero, int numBusca); 
 
@@ -87,9 +88,9 @@ int q3(char str[], char letraBuscada, int isCaseSensitive){
   return qtdOcorrencias ;
 }
 
-/*int q4(*strTexto, char *strBusca){
+int q4(int *strTexto, char *strBusca){
   
-}*/
+}
 
 int q5(int numero){
   int i, j; 

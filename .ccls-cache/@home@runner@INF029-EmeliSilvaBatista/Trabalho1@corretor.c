@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
-//gcc corretor.c EmeliBatista20212160052.c -o t1 -lm
+//gcc novocorretor.c EmeliBatista20212160052.c -o t1 -lm
 //renomeie o arquivo do include abaixo para PrimeiroUltimoNomeMATRICULA.h
 #include "EmeliBatista20212160052.h"
 
@@ -14,8 +14,8 @@ void testQ6();
 
 int main(){
   testQ3();
-  //testQ5(); 
-  //testQ6(); 
+  testQ5(); 
+  testQ6(); 
 }
 void testQ1()
 {
