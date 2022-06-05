@@ -15,6 +15,8 @@ typedef struct reg {
 } No;
 
 int criarEstruturaAuxiliar(int posicao, int tamanho);
+
+
 int inserirNumeroEmEstrutura(int posicao, int valor);
 int excluirNumeroDoFinaldaEstrutura(int posicao);
 int excluirNumeroEspecificoDeEstrutura(int posicao, int valor);
@@ -30,6 +32,7 @@ void destruirListaEncadeadaComCabecote(No **inicio);
 
 void inicializar();
 void finalizar();
-//void dobrar(int *x);
+/*void dobrar(int *x);
 
+*/
 #endif  // TRABALHO2_ESTRUTURAVETORES_H
