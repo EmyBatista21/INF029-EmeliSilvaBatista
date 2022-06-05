@@ -384,31 +384,6 @@ Retorno (int)
     Um número int > 0 correpondente a quantidade de elementos preenchidos da estrutura
 */
 
-/*int getQuantidadeElementosEstruturaAuxiliar(int posicao)
-{
-
-    int retorno = 0;
-
-    if (posicao>10 || posicao<1)
-        retorno = POSICAO_INVALIDA;
-    else
-    {
-        // testar se existe a estrutura auxiliar
-        if (vetorPrincipal[posicao].aux != NULL)
-        {
-          if (vetorPrincipal[posicao].qtd_elementos > 0){
-            if (vetorPrincipal[posicao].tam < vetorPrincipal[posicao].qtd_elementos)
-              vetorPrincipal[posicao].qtd_elementos = vetorPrincipal[posicao].tam;
-              retorno = vetorPrincipal[posicao].qtd_elementos;
-          }
-          else 
-            retorno = ESTRUTURA_AUXILIAR_VAZIA;
-        }else
-          retorno = SEM_ESTRUTURA_AUXILIAR;
-    } 
-    return retorno;
-}*/
-
 
 
 int getQuantidadeElementosEstruturaAuxiliar(int posicao)
@@ -475,18 +450,18 @@ void inserirNoFinalComCabecote(No *inicio, int val){
 
 No *montarListaEncadeadaComCabecote()
 {
-  int i, j, retorno, contador;
+  int iCont, jCont;
+  int retorno, contador;
   No *cabecote = (No*) malloc(sizeof(No));  
   
   
-  for (i = 0; i < TAM; i++){
-    if (vetorPrincipal[i].aux != NULL){
-      if (vetorPrincipal[i].qtd_elementos > 0){
+  for (iCont = 0; iCont < TAM; iCont++){
+    if (vetorPrincipal[iCont].aux != NULL){
+      if (vetorPrincipal[iCont].qtd_elementos > 0){
         contador++;
-       // for para fazer a lista encadeada assumir os valores
-        for (j = 0; j < vetorPrincipal[i].qtd_elementos; j++)
+        for (jCont = 0; jCont < vetorPrincipal[iCont].qtd_elementos; jCont++)
         {
-          inserirNoFinalComCabecote(cabecote, vetorPrincipal[i].aux[j]); 
+          inserirNoFinalComCabecote(cabecote, vetorPrincipal[iCont].aux[jCont]); 
         }
       }
     }
@@ -496,7 +471,7 @@ No *montarListaEncadeadaComCabecote()
   if (contador > 0)
     return cabecote;
   else
-  return NULL;
+    return NULL;
 }
 
 /*
@@ -508,7 +483,7 @@ void getDadosListaEncadeadaComCabecote(No *inicio, int vetorAux[])
   No *p;
   int index = 0;
   for (p = inicio->prox; p != NULL; p = p->prox)
-  vetorAux[index++] = p->conteudo;
+    vetorAux[index++] = p->conteudo;
 }
 
 /*
