@@ -4,7 +4,7 @@
 
 /*Faça um programa que leia a idade de uma pessoa e informe de ela é de maior ou menor*/
 
-void main(){
+int main(void){
     int idade;
     setlocale(LC_ALL,"Portuguese"); 
     printf("Informe sua idade: ");

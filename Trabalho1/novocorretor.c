@@ -5,30 +5,30 @@
 //renomeie o arquivo do include abaixo para PrimeiroUltimoNomeMATRICULA.h
 #include "EmeliBatista20212160052.h"
 
-void testQ1();
-void testQ2();
+//void testQ1();
+//void testQ2();
 void testQ3();
-void testQ4();
+//void testQ4();
 void testQ5();
 void testQ6();
 
 int main(){
     //pridntf("q1\n");
-    testQ1(); // 10 testes
+    //testQ1(); // 10 testes
     //pridntf("q2\n");
-    /*testQ2(); // 35 testes
-    //prindtf("q3\n");*/
+    //testQ2(); // 35 testes
+    //prindtf("q3\n");
     testQ3(); // 13 testes
     //prdintf("q4\n");
-    /*testQ4(); // 22 testes
-    //prdintf("q5\n");*/
+    //testQ4(); // 22 testes
+    //prdintf("q5\n");
     testQ5(); // 10 testes
     //prdintf("q6\n");
     testQ6(); // 10 testes 
     
     
 }
-
+/*
 void testQ1(){
     char str[11];
     strcpy(str,"29/02/2015");
@@ -54,7 +54,7 @@ void testQ1(){
 
 }
 
-/*void testQ2(){
+void testQ2(){
     char datainicial[11], datafinal[11];
     int qtdDias, qtdMeses, qtdAnos;
     DiasMesesAnos dma;
@@ -184,8 +184,8 @@ void testQ1(){
     printf("%d\n",dma.qtdMeses == 1);
     printf("%d\n",dma.qtdAnos == 0);
 
-}*/
-
+}
+*/
 void testQ3(){
     char str[250];
     strcpy(str,"Renato Lima Novais");
@@ -207,8 +207,8 @@ void testQ3(){
 
     
 }
-
-/*void testQ4(){
+/*
+void testQ4(){
     char strTexto[250];
     char strBusca[50];
     int posicoes[30];
@@ -260,8 +260,8 @@ void testQ3(){
     printf("%d\n",posicoes[6]==26);
     printf("%d\n",posicoes[7]==27);
 
-}*/
-
+}
+*/
 
 void testQ5(){
     printf("%d\n",q5(345) == 543);
@@ -289,3 +289,4 @@ void testQ6(){
     printf("%d\n",q6(1234562354, 32) == 0);
 
 }
+    
