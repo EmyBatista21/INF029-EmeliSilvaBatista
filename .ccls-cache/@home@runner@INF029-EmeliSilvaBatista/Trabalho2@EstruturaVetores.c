@@ -345,20 +345,27 @@ int modificarTamanhoEstruturaAuxiliar(int posicao, int novoTamanho)
 {
     // Realocar memória 
     int retorno = 0;
-    
+    novoTamanho = novoTamanho + vetorPrincipal[posicao].tam;
+    // Se a posição for invalida
     if(posicao < 1 || posicao > 10){
       retorno = POSICAO_INVALIDA;
     }else{
-      if(vetorPrincipal[posicao].aux == NULL){
-        retorno = SEM_ESTRUTURA_AUXILIAR;  
+      // Se o tamanho for invalido
+      if(novoTamanho < 1){
+        retorno = NOVO_TAMANHO_INVALIDO;  
       }else{
-        if(vetorPrincipal[posicao].qtd_elementos < vetorPrincipal[posicao].tam){
-          retorno = SEM_ESPACO_DE_MEMORIA;
+        // Se não existir estrutura auxiliar
+        if(vetorPrincipal[posicao].aux == NULL){
+          retorno = SEM_ESTRUTURA_AUXILIAR;
         }else{
-          if(novoTamanho > vetorPrincipal[posicao].tam || novoTamanho < vetorPrincipal[posicao].tam){
-            retorno = NOVO_TAMANHO_INVALIDO;
+          vetorPrincipal[posicao].aux = realloc(vetorPrincipal[posicao].aux, (novoTamanho + vetorPrincipal[posicao].tam) * sizeof(int));
+          if(!vetorPrincipal[posicao].aux){
+            retorno = SEM_ESPACO_DE_MEMORIA;
           }else{
-            vetorPrincipal[posicao].aux = realloc(vetorPrincipal[posicao].aux, (novoTamanho * sizeof(int)));
+            vetorPrincipal[posicao].tam = novoTamanho;
+            if(vetorPrincipal[posicao].tam < vetorPrincipal[posicao].qtd_elementos){
+              vetorPrincipal[posicao].qtd_elementos = vetorPrincipal[posicao].tam;
+            }
             retorno = SUCESSO;
           }
         }
@@ -366,8 +373,6 @@ int modificarTamanhoEstruturaAuxiliar(int posicao, int novoTamanho)
     } 
     return retorno;
 }
-
-
 
 /*
 Objetivo: retorna a quantidade de elementos preenchidos da estrutura auxiliar da posição 'posicao'.
@@ -378,18 +383,45 @@ Retorno (int)
     ESTRUTURA_AUXILIAR_VAZIA - estrutura auxiliar vazia
     Um número int > 0 correpondente a quantidade de elementos preenchidos da estrutura
 */
-int getQuantidadeElementosEstruturaAuxiliar(int posicao)
+
+/*int getQuantidadeElementosEstruturaAuxiliar(int posicao)
 {
 
     int retorno = 0;
-    int elementos, iCont;  
+
+    if (posicao>10 || posicao<1)
+        retorno = POSICAO_INVALIDA;
+    else
+    {
+        // testar se existe a estrutura auxiliar
+        if (vetorPrincipal[posicao].aux != NULL)
+        {
+          if (vetorPrincipal[posicao].qtd_elementos > 0){
+            if (vetorPrincipal[posicao].tam < vetorPrincipal[posicao].qtd_elementos)
+              vetorPrincipal[posicao].qtd_elementos = vetorPrincipal[posicao].tam;
+              retorno = vetorPrincipal[posicao].qtd_elementos;
+          }
+          else 
+            retorno = ESTRUTURA_AUXILIAR_VAZIA;
+        }else
+          retorno = SEM_ESTRUTURA_AUXILIAR;
+    } 
+    return retorno;
+}*/
+
+
+
+int getQuantidadeElementosEstruturaAuxiliar(int posicao)
+{
+
+    int retorno = 0; 
     if(posicao < 1 || posicao > 10){
       retorno = POSICAO_INVALIDA;
     }else{
       if(vetorPrincipal[posicao].aux == NULL){
         retorno = SEM_ESTRUTURA_AUXILIAR;
       }else{
-        if(vetorPrincipal[posicao].qtd_elementos <= 0){
+        if(vetorPrincipal[posicao].qtd_elementos < 1){
           retorno = ESTRUTURA_AUXILIAR_VAZIA;
         }else{
           if(vetorPrincipal[posicao].tam < vetorPrincipal[posicao].qtd_elementos){
@@ -410,10 +442,61 @@ Retorno (No*)
     NULL, caso não tenha nenhum número nas listas
     No*, ponteiro para o início da lista com cabeçote
 */
+
+No* criarElemento(int valor){
+	No *novo = (No *)malloc(sizeof(No));
+	if(novo == NULL){
+        printf("Falta Memoria\n");
+        exit(1);
+	}
+	novo->conteudo = valor;
+	novo->prox = NULL;
+	return novo;
+}
+
+void inserirNoFinalComCabecote(No *inicio, int val){
+
+	No* tmp;
+	No* novo = criarElemento(val);
+
+	if(inicio->prox == NULL){
+		inicio->prox = novo;
+	}
+	else{
+		tmp = inicio->prox;
+
+		while(tmp->prox != NULL)
+			tmp = tmp->prox;
+
+		tmp->prox = novo;
+	}
+}
+
+
 No *montarListaEncadeadaComCabecote()
 {
+  int i, j, retorno, contador;
+  No *cabecote = (No*) malloc(sizeof(No));  
+  
+  
+  for (i = 0; i < TAM; i++){
+    if (vetorPrincipal[i].aux != NULL){
+      if (vetorPrincipal[i].qtd_elementos > 0){
+        contador++;
+       // for para fazer a lista encadeada assumir os valores
+        for (j = 0; j < vetorPrincipal[i].qtd_elementos; j++)
+        {
+          inserirNoFinalComCabecote(cabecote, vetorPrincipal[i].aux[j]); 
+        }
+      }
+    }
+      
+  }
 
-    return NULL;
+  if (contador > 0)
+    return cabecote;
+  else
+  return NULL;
 }
 
 /*
@@ -422,6 +505,10 @@ Retorno void
 */
 void getDadosListaEncadeadaComCabecote(No *inicio, int vetorAux[])
 {
+  No *p;
+  int index = 0;
+  for (p = inicio->prox; p != NULL; p = p->prox)
+  vetorAux[index++] = p->conteudo;
 }
 
 /*
@@ -433,6 +520,16 @@ Retorno
 */
 void destruirListaEncadeadaComCabecote(No **inicio)
 {
+  No* atual = *inicio;
+	No* tmp;
+
+	while(atual != NULL){
+		tmp = atual->prox;
+		free(atual);
+		atual = tmp;
+	}
+
+  *inicio = NULL;
 }
 
 /*
